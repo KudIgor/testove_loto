@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гурт «Грим та Грім»</title>
+
+    <!-- Підключення CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="container nav">
+        <div class="logo">G&G</div>
+        <nav>
+            <ul>
+                <li><a href="#about">Про гурт</a></li>
+                <li><a href="#concerts" class="scroll-to" data-target="concerts">Концерти</a></li>
+                <li><a href="#members" class="scroll-to" data-target="members">Гурт</a></li>
+                <li><a href="#contacts" class="scroll-to" data-target="contacts">Контакти</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Гурт «Грим та Грім»</h1>
+        <p>Справжній український рок, який гуркоче в серці.</p>
+        <p>«Грим та Грім» — це поєднання <a style="color:#00BFFF; font-weight: bold">потужних</a> гітарних рифів, чесних текстів і вибухової енергії сцени. Ми граємо для тих, хто цінує живий звук, свободу, та силу музики.</p>
+        <p><a style="color:#00BFFF; font-weight: bold; text-decoration: none;" href= "#concerts">Наші концерти</a> — це завжди контакт з залом, драйв і емоції. Приєднуйся до нас на найближчих виступах і відчуй цей саунд наживо!</p>
+        <a href="#concerts" class="btn-yellow scroll-to" data-target="concerts">ЗАМОВИТИ КВИТОК</a>
+    </div>
+</section>
+
+<section id="concerts" class="section container">
+  <div class="concerts card-surface" aria-labelledby="concertsTitle">
+    <div class="concerts-head">
+      <h2 id="concertsTitle">Найближчі концерти</h2>
+      <p class="muted small">Оберіть місто та купіть квитки — або натисніть «Замовити» для бронювання.</p>
+    </div>
+
+    <!-- Таблиця для широких екранів -->
+    <div class="concerts-table-wrap" role="region" aria-label="Список концертів у вигляді таблиці">
+      <table class="concerts-table" aria-describedby="concertsTitle">
+        <thead>
+          <tr>
+            <th class="col-city">Місто / Заклад</th>
+            <th class="col-seats">Місць</th>
+            <th class="col-date">Дата & час</th>
+            <th class="col-price">Ціна</th>
+            <th class="col-action"></th>
+          </tr>
+        </thead>
+        <tbody id="concert-list-table">
+          <!-- JS наповнить -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Карточки для мобільних/вузьких екранів -->
+    <div id="concert-cards" class="concerts-cards" aria-hidden="true">
+    </div>
+  </div>
+</section>
+
+
+<section id="members" class="section container">
+    <h2>Учасники гурту</h2>
+    <div class="members">
+        <div class="member">
+            <img src="https://images.unsplash.com/photo-1549213783-8284d0336f6b?auto=format&fit=crop&w=800&q=60">
+            <h3>Максим</h3>
+            <p>гітара</p>
+        </div>
+        <div class="member">
+            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=60">
+            <h3>Олена</h3>
+            <p>вокал</p>
+        </div>
+        <div class="member">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=60">
+            <h3>Тарас</h3>
+            <p>барабани</p>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section container">
+    <h2>Наша історія</h2>
+    <p>
+        Гурт «Грим та Грім» створений з любові до живого року.
+        Ми виступаємо на клубних і фестивальних сценах та даруємо енергію слухачам.
+    </p>
+</section>
+
+<section id="contacts" class="section container">
+    <h2>Зв'яжись з нами</h2>
+    <form id="contact-form">
+        <input type="text" placeholder="Ім'я" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Ваше повідомлення"></textarea>
+        <button type="submit" class="btn-pink">Відправити</button>
+    </form>
+</section>
+
+<footer>
+    © 2025 «Грим та Грім». Всі права захищені.
+</footer>
+
+<!-- ПОКРАЩЕНА МОДАЛКА ДЛЯ БРОНЮВАННЯ -->
+<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-card" role="document" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Закрити">&times;</button>
+
+    <div class="modal-header">
+      <h3 id="modalTitle">Замовлення квитка</h3>
+      <p id="concertInfo" class="muted small">Оберіть кількість квитків та введіть контакти</p>
+    </div>
+
+    <form id="booking-form" class="modal-form" autocomplete="on">
+      <div class="modal-row">
+        <div class="field">
+          <label for="buyer">Ім'я</label>
+          <input id="buyer" name="buyer" type="text" placeholder="Іван Іваненко" required>
+        </div>
+
+        <div class="field">
+          <label for="phone">Телефон</label>
+          <input id="phone" name="phone" type="tel" placeholder="+380 (99) 123-45-67" required>
+        </div>
+      </div>
+
+      <div class="modal-row">
+        <div class="field half">
+          <label for="tickets">Кількість квитків</label>
+          <input id="tickets" name="tickets" type="number" min="1" max="10" value="1" required>
+        </div>
+
+        <div class="field half">
+          <label for="email">Email (необов'язково)</label>
+          <input id="email" name="email" type="email" placeholder="name@example.com">
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="modalCancel" class="btn-outline">Скасувати</button>
+        <button type="submit" class="btn-pink">Підтвердити</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- Підключення JS -->
+<script src="script.js"></script>
+
+</body>
+</html>

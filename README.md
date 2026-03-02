@@ -1,0 +1,1 @@
+# testove_loto

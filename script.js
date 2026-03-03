@@ -1,4 +1,3 @@
-// script.js — об'єднаний, стабільний варіант
 document.addEventListener('DOMContentLoaded', () => {
   try {
     /* ===================== Дані концертів ===================== */
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
       concerts.forEach((c, idx) => {
         const { dateStr, timeStr } = formatDateTime(c.datetime);
 
-        // Таблиця (десктоп)
         if (tbodyTable) {
           const tr = document.createElement('tr');
           tr.innerHTML = `
@@ -51,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
           tbodyTable.appendChild(tr);
         }
 
-        // Карточки (мобільні)
         if (cardsWrap) {
           const card = document.createElement('div');
           card.className = 'concert-card';
@@ -115,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Делегування: відкриття модалки при кліку на .btn-ticket
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.btn-ticket');
       if (btn) {
@@ -129,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Закриття модалки: кнопки, клік поза, ESC
     if (modalClose) modalClose.addEventListener('click', closeBookingModal);
     if (modalCancel) modalCancel.addEventListener('click', closeBookingModal);
     if (modal) {
@@ -141,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Escape' && modal && modal.classList.contains('show')) closeBookingModal();
     });
 
-    // Сабміт броні
     if (bookingForm) {
       bookingForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -154,7 +148,17 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
         const concert = concerts[selectedConcertIndex];
-        alert(`Дякуємо, ${buyer}! Замовлення на ${tickets} квитків на ${concert.city} (${concert.venue}) прийняте.`);
+const resultBox = document.getElementById('formResult');
+
+resultBox.textContent = `Дякуємо, ${buyer}! Замовлення на ${tickets} квитків прийняте.`;
+resultBox.classList.remove('visually-hidden');
+resultBox.classList.remove('error');
+resultBox.classList.add('success');
+setTimeout(() => {
+  bookingForm.reset();
+  closeBookingModal();
+  resultBox.classList.add('visually-hidden');
+}, 2000);
         bookingForm.reset();
         closeBookingModal();
       });
@@ -202,19 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
       animatedScrollTo(targetY);
     }
 
-    // Обробка кліків на елементи з класом .scroll-to або звичайні #якорі
     document.addEventListener('click', function (e) {
       const el = e.target.closest('.scroll-to') || (e.target.matches('a[href^="#"]') ? e.target : null);
       if (!el) return;
-      // Якщо це саме <a href="#..."> або елемент з data-target
       const target = el.dataset?.target || (el.getAttribute ? el.getAttribute('href')?.replace('#', '') : null);
       if (!target) return;
-      // Затримуємо стандартну поведінку
       e.preventDefault();
       scrollToId(target);
     });
 
-    // Якщо сторінка завантажилась з хешом
     window.addEventListener('load', function () {
       if (location.hash) {
         const id = location.hash.replace('#', '');
@@ -222,37 +222,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    /* ===================== MOBILE NAV (hamburger) ===================== */
-    const hamburger = document.querySelector('.hamburger');
-    const navul = document.querySelector('nav ul');
-
-    if (hamburger && navul) {
-      hamburger.addEventListener('click', () => {
-        const opened = navul.classList.toggle('open');
-        if (opened) {
-          navul.style.display = 'flex';
-          navul.style.flexDirection = 'column';
-          navul.style.position = 'absolute';
-          navul.style.right = '20px';
-          navul.style.top = `${(getHeaderHeight() || 60)}px`;
-          navul.style.background = 'rgba(10,10,10,0.95)';
-          navul.style.padding = '10px';
-          navul.style.borderRadius = '8px';
-        } else {
-          navul.style.display = '';
-          navul.style.flexDirection = '';
-          navul.style.position = '';
-          navul.style.right = '';
-          navul.style.top = '';
-          navul.style.background = '';
-          navul.style.padding = '';
-          navul.style.borderRadius = '';
-        }
-      });
-    }
 
     /* ===================== CONTACT FORM ===================== */
-    const contactForm = document.getElementById('contact-form');
+    const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -263,12 +235,21 @@ document.addEventListener('DOMContentLoaded', () => {
           alert('Будь ласка, заповніть ім\'я та email.');
           return;
         }
-        alert('Дякую! Повідомлення відправлено. Ми зв\'яжемося з вами найближчим часом.');
+const result = document.getElementById('formResult');
+
+result.textContent = "Дякую! Повідомлення відправлено.";
+result.classList.remove('visually-hidden');
+result.classList.add('success');
+
+contactForm.reset();
+
+setTimeout(() => {
+  result.classList.add('visually-hidden');
+}, 3000);
         contactForm.reset();
       });
     }
 
-    // Фінішний лог
     console.log('Main script initialized: concerts, modal, smooth-scroll, mobile-nav, contact-form.');
   } catch (err) {
     console.error('Помилка в основному script.js:', err);

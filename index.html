@@ -21,7 +21,7 @@
                 <li><a href="#about">Про гурт</a></li>
                 <li><a href="#concerts" class="scroll-to" data-target="concerts">Концерти</a></li>
                 <li><a href="#members" class="scroll-to" data-target="members">Гурт</a></li>
-                <li><a href="#contacts" class="scroll-to" data-target="contacts">Контакти</a></li>
+                <li><a href="#contact" class="scroll-to" data-target="contact">Контакти</a></li>
             </ul>
         </nav>
     </div>
@@ -57,7 +57,6 @@
           </tr>
         </thead>
         <tbody id="concert-list-table">
-          <!-- JS наповнить -->
         </tbody>
       </table>
     </div>
@@ -73,17 +72,17 @@
     <h2>Учасники гурту</h2>
     <div class="members">
         <div class="member">
-            <img src="https://images.unsplash.com/photo-1549213783-8284d0336f6b?auto=format&fit=crop&w=800&q=60">
+            <img src="https://disgustingmen.com/wp-content/uploads/2022/10/metal.jpg">
             <h3>Максим</h3>
             <p>гітара</p>
         </div>
         <div class="member">
-            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=60">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeTf-c_PVmRaSj_OZj7k9PTgDqeu67GfREjg&s">
             <h3>Олена</h3>
             <p>вокал</p>
         </div>
         <div class="member">
-            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=60">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS18qVhQTRdU50z7pc0Tz1mlHPuDt7eteHMFw&s">
             <h3>Тарас</h3>
             <p>барабани</p>
         </div>
@@ -91,31 +90,82 @@
 </section>
 
 <section id="about" class="section container">
-    <h2>Наша історія</h2>
-    <p>
-        Гурт «Грим та Грім» створений з любові до живого року.
-        Ми виступаємо на клубних і фестивальних сценах та даруємо енергію слухачам.
-    </p>
+  <div class="about-inner">
+    <div class="about-text">
+      <h2>Наша історія</h2>
+      <p>
+        «Грим та Грім» народився з бажання створювати музику, яка відчувається серцем. Ми починали свій шлях у маленькій студії в центрі Києва, де кожен акорд, кожне слово було наповнене емоцією та переживанням. Це було місце, де народжувались перші пісні, де ми вчилися грати разом як єдиний організм.
+      </p>
+      <p>
+        За роки нашої діяльності ми виступили на десятках сцен — від невеликих клубів до великих фестивалів. Наша музика — це поєднання традиційного року з сучасними елементами; ми не боїмося експериментувати з звучанням і додавати електронні інструменти.
+      </p>
+      <p>
+        Кожен наш виступ — це не просто концерт, це справжня подія, де ми ділитимемось енергією з публікою. Приєднуйтесь до нас — відчуйте цей саунд наживо!
+      </p>
+    </div>
+
+    <div class="about-media" aria-hidden="false">
+      <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=60"
+           alt="Концерт гурту" />
+    </div>
+  </div>
 </section>
 
-<section id="contacts" class="section container">
-    <h2>Зв'яжись з нами</h2>
-    <form id="contact-form">
-        <input type="text" placeholder="Ім'я" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Ваше повідомлення"></textarea>
-        <button type="submit" class="btn-pink">Відправити</button>
-    </form>
+<!-- contact-block.html -->
+<section id="contact" class="contact" aria-labelledby="contact-title">
+  <div class="contact__container">
+
+    <!-- Ліва частина: заголовок + форма -->
+    <div class="contact__left">
+      <h2 id="contact-title" class="contact__title">Зв'яжись з нами</h2>
+      <p class="contact__subtitle">Хочеш замовити виступ або маєш питання? Пиши!</p>
+
+      <form class="contact__form" id="contactForm" novalidate>
+        <div class="contact__row">
+          <div class="contact__field">
+            <label for="name">Ім'я</label>
+            <input type="text" id="name" name="name" required aria-required="true" />
+          </div>
+
+          <div class="contact__field">
+            <label for="bookingEmail">Email</label>
+            <input type="email" id="bookingEmail" name="email" required aria-required="true" />
+          </div>
+        </div>
+
+        <div class="contact__field">
+          <label for="message">Повідомлення</label>
+          <textarea id="message" name="message" rows="5" required aria-required="true"
+            placeholder="Розкажи про свої ідеї..."></textarea>
+        </div>
+
+        <button type="submit" class="contact__button" id="contactSubmit">
+          <span class="btn-text">Відправити</span>
+        </button>
+
+        <div id="formResult" role="status" aria-live="polite" class="form-result visually-hidden"></div>
+      </form>
+    </div>
+
+    <!-- Права частина: карта -->
+    <div class="contact__right">
+      <div class="contact__map" aria-hidden="false" title="Наша локація">
+        <iframe
+          src="https://www.google.com/maps?q=Kyiv&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<footer>
-    © 2025 «Грим та Грім». Всі права захищені.
-</footer>
-
-<!-- ПОКРАЩЕНА МОДАЛКА ДЛЯ БРОНЮВАННЯ -->
+<!-- апдейт модалки -->
 <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="modal-card" role="document" aria-labelledby="modalTitle">
-    <button class="modal-close" id="modalClose" aria-label="Закрити">&times;</button>
+    <button type="button" class="modal-close" id="modalClose" aria-label="Закрити">&times;</button>
 
     <div class="modal-header">
       <h3 id="modalTitle">Замовлення квитка</h3>
@@ -156,8 +206,26 @@
 </div>
 
 
+<!-- Футер -->
+<footer class="footer">
+  <div class="footer-block">
+    <h3>Спільнота</h3>
+    <a href="#" style="text-decoration: none;">Facebook</a>
+    <a href="#" style="text-decoration: none;">Instagram</a>
+    <a href="#" style="text-decoration: none;">Telegram</a>
+  </div>
+  <div class="footer-block">
+    <h3>Контакти</h3>
+    <a href="mailto:info@lotoplay.ua" style="text-decoration: none;">info@lotoplay.ua</a>
+    <a href="tel:+380501234567" style="text-decoration: none;">+380 50 123 45 67</a>
+  </div>
 
-<!-- Підключення JS -->
+  <div class="footer-copyright">
+    © 2026 Lotoplay. TM Lotoplay Corporation
+  </div>
+</footer>
+
+
 <script src="script.js"></script>
 
 </body>

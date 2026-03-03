@@ -288,12 +288,14 @@ footer {
 }
 
 .modal-card {
+  overflow: visible; /* дозволяє box-shadow інпутів бачити, не обрізувати */
   width: 100%;
   max-width: 520px;
   background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
   border-radius: 14px;
-  padding: 18px 18px 16px;
+  padding: 24px;
   box-shadow: 0 12px 40px rgba(2,6,12,0.7);
+  box-sizing: border-box;
   border: 1px solid rgba(255,255,255,0.04);
   position: relative;
   transform-origin: center top;
@@ -325,7 +327,7 @@ footer {
 .modal-form {
  display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -430,7 +432,7 @@ footer {
 }
 
 /* Мобільна адаптація */
-@media (max-width:520px) {
+@media (max-width:600px) {
   .modal-card {
     padding: 14px; border-radius: 12px; 
   }
@@ -459,4 +461,19 @@ html {
   html {
     scroll-behavior: auto;
   }
+}
+
+
+
+
+
+
+/* ===== ЖОРСТКИЙ FIX МОДАЛКИ ===== */
+
+.field input,
+.field textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
 }
